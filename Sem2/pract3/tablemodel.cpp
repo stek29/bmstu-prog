@@ -4,18 +4,6 @@
 
 TableModel::TableModel(QObject *parent): QAbstractTableModel(parent)
 {
-    animals.append({"К1", "О1.1", "С1.1.1", "В1.1.1.1"});
-    animals.append({"К1", "О1.1", "С1.1.1", "В1.1.1.2"});
-    animals.append({"К1", "О1.1", "С1.1.1", "В1.1.1.3"});
-    animals.append({"К1", "О1.1", "С1.1.2", "В1.1.2.1"});
-    animals.append({"К1", "О1.2", "С1.2.1", "В1.2.1.1"});
-    animals.append({"К2", "О2.1", "С2.1.1", "В2.1.1.1"});
-    animals.append({"К2", "О2.2", "С2.2.1", "В2.2.1.1"});
-    animals.append({"К2", "О2.3", "С2.3.1", "В2.3.1.1"});
-    animals.append({"К2", "О2.4", "С2.4.1", "В2.4.1.1"});
-    animals.append({"К3", "О3.1", "С3.1.1", "В3.1.1.1"});
-    animals.append({"К3", "О3.1", "С3.1.1", "В3.1.1.2"});
-    animals.append({"К3", "О3.1", "С3.1.2", "В3.1.2.1"});
 }
 
 int TableModel::rowCount(const QModelIndex &parent) const {
