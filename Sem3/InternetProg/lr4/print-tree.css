@@ -1,0 +1,13 @@
+.print-tree-wrapper {
+    margin: 5px;
+    padding: 5px;
+    border: 1px dashed dimgray;
+    border-collapse: collapse;
+}
+
+.print-tree-result {
+    margin: 5px;
+    padding: 5px;
+    border: 1px dashed dimgray;
+    border-collapse: collapse;
+}
