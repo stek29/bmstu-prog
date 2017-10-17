@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>Заказ товара</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="cart.js"></script>
+
+    <style>
+        .form-row-wrapper>label, .form-row-wrapper>input {
+            display: block;
+        }
+
+        .form-row-wrapper {
+            padding: 3px;
+        }
+
+        .cart-block {
+            margin: 10px;
+        }
+
+        span.quantity {
+            padding-left: 3px;
+            padding-right: 3px;
+        }
+
+        .hidden {
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="cart-block">
+        <b>Введите элементы</b>
+
+        <div class="form-row-wrapper">
+            <label>Наименование: </label>
+            <input type="text" id="add-name">
+        </div>
+
+        <div class="form-row-wrapper">
+            <label>Цена: </label>
+            <input type="number" id="add-price">
+        </div>
+
+        <div id="add-status"></div>
+
+        <button onclick="addProduct()">Добавить</button>
+    </div>
+
+    <div class="cart-block">
+        <b>Доступные товары</b>
+
+        <table id="products">
+            <tr>
+                <td>Наименование</td>
+                <td>Цена</td>
+                <td>В корзине</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="cart-block">
+        <b>Счет</b>
+        <button onclick="showReciept()">Подсчитать</button>
+        <table id="reciept">
+        </table>
+    </div>
+</body>
+</html>
