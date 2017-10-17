@@ -4,7 +4,7 @@ window.printTreeInit = function (el) {
     const classPrefix = 'print-tree-';
     const indentWith = '&nbsp;';
     const maxDepth = 100;
-    
+
     var context = {};
     context.element = el;
 
@@ -18,7 +18,7 @@ window.printTreeInit = function (el) {
         console.debug('print: ', text);
         this.resultElement.innerHTML += text;
     }).bind(context);
-    
+
     context.clear = (function () {
         this.resultElement.innerHTML = '';
     }).bind(context);
@@ -30,22 +30,26 @@ window.printTreeInit = function (el) {
             console.warn('maxdepth reached!');
             return;
         }
-        
+
         if ((!element)
             || (element.className||'').startsWith(classPrefix)
             || (element.nodeName == '#text')
            ) return;
-        
-        
+
+
         this.print([
             indentWith.repeat(depth),
             '&lt;', element.tagName, '&gt;',
             '\n'
         ].join(''));
-        
-        element.childNodes.forEach(e => this.traverseDOM(e, depth+1));
+
+        // element.children is NodeList, but NodeList.forEach is undefined
+        // so we convert it to Array
+        Array.prototype.slice.call(element.children).forEach(
+            e => this.traverseDOM(e, depth+1)
+        );
     }).bind(context);
-    
+
     var printFunction = (function () {
         this.clear();
         this.printButton.disabled = true;
@@ -57,10 +61,10 @@ window.printTreeInit = function (el) {
 
     context.wrapper = document.createElement('div');
     context.wrapper.className = classPrefix + 'wrapper';
-    
+
     context.wrapper.appendChild(context.resultElement);
     context.wrapper.appendChild(document.createElement('br'));
     context.wrapper.appendChild(context.printButton);
-    
+
     context.element.appendChild(context.wrapper);
 };
