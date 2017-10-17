@@ -33,7 +33,6 @@ window.printTreeInit = function (el) {
 
         if ((!element)
             || (element.className||'').startsWith(classPrefix)
-            || (element.nodeName == '#text')
            ) return;
 
 
