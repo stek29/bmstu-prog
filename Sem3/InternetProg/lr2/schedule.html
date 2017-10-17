@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ЛР№2.2 -- Table made with DIVs</title>
+
+    <style>
+        .dtable div {
+            border: 1px solid darkgray;
+            border-collapse: collapse;
+            padding: 3px;
+        }
+
+        .dtable {
+            display: table;
+        }
+
+        .dtable .head {
+            background-color: lightgray;
+        }
+
+        .dtable-caption {
+            display: table-caption;
+            text-align: center;
+        }
+
+        .dtable-row {
+            display: table-row;
+        }
+
+        .dtable-cell {
+            display: table-cell;
+        }
+    </style>
+</head>
+<body>
+    <div class="dtable">
+        <div class="dtable-caption">Расписание</div>
+        <div class="dtable-row head">
+            <div class="dtable-cell">Понедельник</div>
+            <div class="dtable-cell">Вторник</div>
+            <div class="dtable-cell">Среда</div>
+            <div class="dtable-cell">Четверг</div>
+        </div>
+        <div class="dtable-row">
+            <div class="dtable-cell">Теорвер</div>
+            <div class="dtable-cell">Яз. инт. прог.</div>
+            <div class="dtable-cell">Физика</div>
+            <div class="dtable-cell">Электротехника</div>
+        </div>
+        <div class="dtable-row">
+            <div class="dtable-cell">Физика</div>
+            <div class="dtable-cell">Яз. инт. прог.</div>
+            <div class="dtable-cell">История</div>
+            <div class="dtable-cell">Правоведение</div>
+        </div>
+    </div>
+</body>
+</html>
