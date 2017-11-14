@@ -4,6 +4,8 @@ class BinReverserController < ApplicationController
   end
 
   def view
+    redirect_to bin_reverser_input_url unless params[:m]
+
     @m_i = params[:m].to_i
 
     @m_bin_str = @m_i.to_s 2
