@@ -1,0 +1,38 @@
+header {
+  padding: 3px;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.div-table {
+  display: table;
+
+  div {
+    border: 1px solid darkgray;
+    border-collapse: collapse;
+    padding: 3px;
+  }
+
+  .head {
+    background-color: lightgray;
+  }
+
+  .caption {
+    display: table-caption;
+    text-align: center;
+  }
+
+  .row {
+    display: table-row;
+  }
+
+  .cell {
+    display: table-cell;
+  }
+}
+
+.code-font {
+  font-family: monospace;
+  font-size: 2em;
+}
+

@@ -1,0 +1,7 @@
+<header>BinReverser#input</header>
+<%= form_tag('/bin_reverser/view', :method => 'get') do %>
+    <%= label_tag 'M: ' %>
+    <%= text_field_tag :m %>
+    <br/>
+    <%= submit_tag 'Submit' %>
+<% end %>
