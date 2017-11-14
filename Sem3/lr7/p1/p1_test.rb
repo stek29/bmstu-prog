@@ -1,8 +1,10 @@
 require 'minitest/autorun'
+require 'stringio'
+
 require_relative 'src'
 
-# Tests for lr7p1
-class TestCharFilter < MiniTest::Test
+# Test for string filtering function
+class TestStrFilter < MiniTest::Test
   def test_a
     assert_equal 'l', (filter_by_prev_char 'lala')
   end
@@ -17,5 +19,17 @@ class TestCharFilter < MiniTest::Test
 
   def test_newline
     assert_equal "\nb", (filter_by_prev_char "a\nab")
+  end
+end
+
+# Tests for file filtering function
+class TestFileFilter < MiniTest::Test
+  def test_oneline
+    f_file = StringIO.new('alas', 'r')
+    h_file = StringIO.new('', 'w')
+
+    filter_file(f_file, h_file)
+
+    assert_equal 'ls', h_file.string.chomp
   end
 end
