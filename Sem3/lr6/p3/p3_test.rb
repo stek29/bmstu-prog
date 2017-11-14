@@ -16,7 +16,7 @@ class TestPart3 < MiniTest::Test
   end
 
   def test_nil_fn_but_blk
-    assert_equal([0, 0], minmax(0, 0) { |x| x } )
+    assert_equal([0, 0], minmax(0, 0) { |x| x })
   end
 
   def test_wrong_order

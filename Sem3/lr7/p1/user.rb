@@ -4,7 +4,7 @@ H_FILENAME = 'h.txt'.freeze
 F_FILENAME = 'f.txt'.freeze
 
 printf 'Create file F? [yN] '
-if gets.chomp.casecmp('y') == 0
+if gets.chomp.casecmp('y').zero?
   puts 'Enter file F contents'
   File.open(F_FILENAME, 'w') do |f_file|
     loop do

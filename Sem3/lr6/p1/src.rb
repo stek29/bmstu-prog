@@ -1,3 +1,5 @@
+# rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+
 def integrate(start_x, end_x, initial_n: 100, eps: 1e-5)
   start_x = start_x.to_f
   end_x = end_x.to_f
