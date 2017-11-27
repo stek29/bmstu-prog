@@ -1,24 +1,14 @@
-# README
+# Backend
+Generates XML code
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Zadanie
+Дано натуральное число m.
 
-Things you may want to cover:
+Написать программу, определяющую такое натуральное число n, что двоичная
+запись числа n получается из двоичной записи числа m изменением порядка
+цифр на обратный порядок их следования.
 
-* Ruby version
+Например: 6 = 110 , а 3 = 011.
 
-* System dependencies
+Вывести числа и их двоичное представление.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
