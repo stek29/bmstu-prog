@@ -3,45 +3,27 @@
              method: 'post',
              remote: true,
              'data-type': :json,
+             authenticity_token: true,
              id: 'm_form') do %>
     <%= label_tag 'M: ' %>
-    <%= text_field_tag :m %>
+    <%= text_field_tag :m, nil, type: 'number', required: true %>
     <br/>
     <%= submit_tag 'Submit' %>
 <% end %>
 
-<div class="div-table">
-  <div class="caption">Result:</div>
-  <div class="row head">
+<div class="div-table" id="result" style="display: none">
+  <!-- display:none is removed by JS -->
+  <div id="status" class="caption">Result:</div>
+  <div class="hide-on-fail row head">
     <div class="cell">M </div>
     <div class="cell">M (binary) </div>
     <div class="cell">N (binary) </div>
     <div class="cell">N </div>
   </div>
-  <div id="result" class="row code-font">
+  <div class="hide-on-fail row code-font">
     <div class="cell" id="m"></div>
     <div class="cell" id="m_bin"></div>
     <div class="cell" id="n_bin"></div>
     <div class="cell" id="n"></div>
   </div>
 </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-      var result_div = document.querySelector('#result');
-      var render_to = {
-          'm_int': result_div.querySelector('#m'),
-          'm_bin': result_div.querySelector('#m_bin'),
-          'n_int': result_div.querySelector('#n'),
-          'n_bin': result_div.querySelector('#n_bin')
-      };
-
-      document.querySelector('#m_form').addEventListener('ajax:success', function(event) {
-          var data = event.detail[0];
-          render_to.m_int.innerHTML = data.num_m.int;
-          render_to.m_bin.innerHTML = data.num_m.bin_str;
-          render_to.n_int.innerHTML = data.num_n.int;
-          render_to.n_bin.innerHTML = data.num_n.bin_str;
-      })
-  })
-</script>
