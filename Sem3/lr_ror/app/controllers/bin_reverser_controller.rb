@@ -1,15 +1,20 @@
 class BinReverserController < ApplicationController
   def input
-    # nothing interesting in inputg
+    # nothing interesting in input
   end
 
   def view
-    redirect_to bin_reverser_input_url unless params[:m]
+    m_int = params[:m].to_i
+    redirect_to bin_reverser_input_url if m_int.nil?
+    m_bin = m_int.to_s 2
+    n_bin = m_bin.reverse
 
-    @m_i = params[:m].to_i
+    @num_m = { int: m_int, bin_str: m_bin }
+    @num_n = { int: n_bin.to_i(2), bin_str: n_bin }
 
-    @m_bin_str = @m_i.to_s 2
-    @n_bin_str = @m_bin_str.reverse
-    @n_i = @n_bin_str.to_i 2
+    respond_to do |format|
+      format.html
+      format.json { render json: { num_m: @num_m, num_n: @num_n } }
+    end
   end
 end

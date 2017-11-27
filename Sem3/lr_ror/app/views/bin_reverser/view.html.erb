@@ -9,10 +9,10 @@
     <div class="cell">N </div>
   </div>
   <div class="row code-font">
-    <div class="cell" id="m"><%= @m_i %></div>
-    <div class="cell" id="m_bin"><%= @m_bin_str %></div>
-    <div class="cell" id="n_bin"><%= @n_bin_str %></div>
-    <div class="cell" id="n"><%= @n_i %></div>
+    <div class="cell" id="m"><%= @num_m[:int] %></div>
+    <div class="cell" id="m_bin"><%= @num_m[:bin_str] %></div>
+    <div class="cell" id="n_bin"><%= @num_n[:bin_str] %></div>
+    <div class="cell" id="n"><%= @num_n[:int] %></div>
   </div>
 </div>
 <%= link_to 'Try different number', :bin_reverser_input %>
