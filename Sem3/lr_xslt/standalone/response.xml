@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <num-m>
+    <int type="integer">123</int>
+    <bin>1111011</bin>
+  </num-m>
+  <num-n>
+    <int type="integer">111</int>
+    <bin>1101111</bin>
+  </num-n>
+</hash>
