@@ -1,8 +1,11 @@
 <div class="container">
-  <% flash.each do |name, msg| %>
-    <div class="alert alert-<%=name%>">
-      <%= msg %>
-    </div>
+  <% if flash[:errors] %>
+    <% flash[:errors].each do |field, msg| %>
+      <div class="alert alert-danger">
+        <strong><%=field%></strong>
+        <%= msg %>
+      </div>
+    <% end %>
   <% end %>
 
   <%= form_tag(
