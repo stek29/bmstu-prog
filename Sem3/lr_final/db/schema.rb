@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 1) do
+ActiveRecord::Schema.define(version: 2) do
 
   create_table "reverse_numbers", id: false, force: :cascade do |t|
     t.integer "m_int"
     t.string "m_bin"
     t.integer "n_int"
     t.string "n_bin"
+    t.index ["m_int"], name: "index_reverse_numbers_on_m_int", unique: true
   end
 
 end
