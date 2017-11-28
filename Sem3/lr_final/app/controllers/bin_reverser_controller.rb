@@ -6,17 +6,12 @@ class BinReverserController < ApplicationController
   def input; end
 
   def view
-    found = ReverseNumber.find_by(m_int: @m_int)
+    @result = ReverseNumber.find_or_create_by(m_int: @m_int)
 
-    created = ReverseNumber.create(make_n_m(@m_int)) if found.nil?
-
-    if found.nil? && !created.valid?
-      flash[:errors] = created.errors.messages
-      redirect_to bin_reverser_input_url and return
+    unless @result.valid?
+      flash[:errors] = @result.errors.messages
+      redirect_to bin_reverser_input_url
     end
-
-    @result = found || created
-    @was_found = !found.nil?
   end
 
   private
