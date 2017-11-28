@@ -1,0 +1,2 @@
+class ReverseNumber < ApplicationRecord
+end

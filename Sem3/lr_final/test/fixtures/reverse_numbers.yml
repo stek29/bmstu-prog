@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+ten:
+  m_int: 10
+  m_bin: 1010
+  n_int: 5
+  n_bin: 101
+
+answer:
+  m_int: 42
+  m_bin: 101010
+  n_int: 21
+  n_bin: 10101
