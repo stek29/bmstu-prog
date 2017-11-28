@@ -1,3 +1,7 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root 'x_proxy#input'
+
+  get 'x_proxy/input'
+
+  match 'x_proxy/output', via: %i[get post]
 end

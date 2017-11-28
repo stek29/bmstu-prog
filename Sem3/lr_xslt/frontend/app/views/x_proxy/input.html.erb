@@ -1,0 +1,36 @@
+<%= form_tag(
+  url_for(controller: :x_proxy, action: :output), 
+  method: :post
+) do %>
+    <% flash.each do |name, msg| %>
+      <div class="alert alert-<%=name%>">
+        <%= msg %>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <h3>Enter M</h3>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :m, 'M' %>
+      <%= text_field_tag :m, nil, class: 'form-control' %>
+    </div>
+
+    <fieldset class="form-group">
+      <legend>Choose renderer</legend>
+
+      <% @renderers.each do |v, desc| %>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input
+                 type="radio" class="form-check-input"
+                 name="render_at" value="<%= v %>" id="<%=v%>">
+            <%=desc%>
+          </label>
+        </div>
+      <% end %>
+    </fieldset>
+
+    <%= submit_tag 'Submit', class: 'btn btn-primary' %>
+<% end %>
