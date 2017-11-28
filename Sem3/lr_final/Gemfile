@@ -55,3 +55,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # STYLISH
 gem 'twitter-bootstrap-rails'
+
+# XML serialization for Models
+gem 'activemodel-serializers-xml'

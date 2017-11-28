@@ -14,6 +14,14 @@ class BinReverserController < ApplicationController
     end
   end
 
+  def dump_all
+    resp = ReverseNumber.all
+
+    respond_to do |format|
+      format.xml { render xml: resp.to_xml }
+    end
+  end
+
   private
 
   def parse_params

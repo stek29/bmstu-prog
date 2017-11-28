@@ -1,4 +1,6 @@
 class ReverseNumber < ApplicationRecord
+  include ActiveModel::Serializers::Xml
+
   validate :m_int_valid
 
   before_create do
