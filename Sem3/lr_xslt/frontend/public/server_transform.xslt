@@ -19,10 +19,10 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <th>N</th>
         </tr>
         <tr>
-          <td><xsl:value-of select="*/num-m/int"/></td>
-          <td><xsl:value-of select="*/num-m/bin"/></td>
-          <td><xsl:value-of select="*/num-n/bin"/></td>
-          <td><xsl:value-of select="*/num-n/int"/></td>
+          <td id="m-int"><xsl:value-of select="*/num-m/int"/></td>
+          <td id="m-bin"><xsl:value-of select="*/num-m/bin"/></td>
+          <td id="n-bin"><xsl:value-of select="*/num-n/bin"/></td>
+          <td id="n-int"><xsl:value-of select="*/num-n/int"/></td>
         </tr>
       </table>
     </xsl:otherwise>
