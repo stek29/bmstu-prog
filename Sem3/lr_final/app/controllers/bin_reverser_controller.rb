@@ -2,6 +2,7 @@ class BinReverserController < ApplicationController
   include BinReverserHelper
 
   before_action :parse_params, only: :view
+  before_action :require_login
 
   def input; end
 
@@ -28,4 +29,10 @@ class BinReverserController < ApplicationController
     @m_int = to_i_or_nil(params[:m])
   end
 
+  def require_login
+    unless logged_in?
+      flash[:login] = 'Please log in'
+      redirect_to '/signin'
+    end
+  end
 end

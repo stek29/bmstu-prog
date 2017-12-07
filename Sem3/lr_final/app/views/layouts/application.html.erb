@@ -15,6 +15,11 @@
           <ul class="nav nav-pills float-right">
             <% if logged_in? %>
               <li class="nav-item">
+                <%= link_to('Input',
+                            bin_reverser_input_path,
+                            class: 'nav-link') %>
+              </li>
+              <li class="nav-item">
                 <%= link_to 'Logout', signout_path, class: 'nav-link' %>
               </li>
             <% else %>
