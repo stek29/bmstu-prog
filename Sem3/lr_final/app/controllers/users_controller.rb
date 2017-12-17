@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @user = User.new(allowed_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_url, notice: 'Thank you for signing up!'
+      redirect_to root_path, notice: 'Thank you for signing up!'
     else
       render :new
     end
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   def destroy
     session[:user_id] = nil if same_user
     @user.destroy
-    redirect_to root_url, notice: 'User was deleted'
+    redirect_to root_path, notice: 'User was deleted'
   end
 
   def update

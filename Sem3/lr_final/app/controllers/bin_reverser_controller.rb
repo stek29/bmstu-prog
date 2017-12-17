@@ -11,7 +11,7 @@ class BinReverserController < ApplicationController
 
     unless @result.valid?
       flash[:errors] = @result.errors.messages
-      redirect_to bin_reverser_input_url
+      redirect_to bin_reverser_input_path
     end
   end
 
