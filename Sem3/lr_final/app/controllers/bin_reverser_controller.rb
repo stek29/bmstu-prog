@@ -28,11 +28,4 @@ class BinReverserController < ApplicationController
   def parse_params
     @m_int = to_i_or_nil(params[:m])
   end
-
-  def require_login
-    unless logged_in?
-      flash[:login] = 'Please log in'
-      redirect_to '/signin'
-    end
-  end
 end

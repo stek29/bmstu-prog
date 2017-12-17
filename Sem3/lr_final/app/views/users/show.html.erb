@@ -1,0 +1,11 @@
+<div class="text-center">
+  <h1 class="m-3 d-block">
+    Welcome, <%= @user.username %>
+  </h1>
+
+  <p>
+    <%= link_to 'Sign out', signout_path, class: 'mx-2 btn btn-primary' %>
+    <%= link_to 'Change password', edit_users_path, class: 'mx-2 btn btn-info' %>
+    <%= link_to 'Delete account', users_path, method: :delete, class: 'mx-2 btn btn-danger', data: { confirm: 'Are you sure?' } %>
+  </p>
+</div>
