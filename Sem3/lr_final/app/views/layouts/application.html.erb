@@ -10,38 +10,8 @@
 
   <body>
     <div class="container">
-      <header class="header">
-        <nav>
-          <ul class="nav nav-pills float-right">
-            <% if logged_in? %>
-              <li class="nav-item">
-                <%= link_to('Input',
-                            bin_reverser_input_path,
-                            class: 'nav-link') %>
-              </li>
-              <li class="nav-item">
-                <%= link_to @current_user.username, users_path, class: 'nav-link' %>
-              </li>
-            <% else %>
-              <li class="nav-item">
-                <%= link_to 'Sign Up', signup_path, class: 'nav-link' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to 'Log In', signin_path, class: 'nav-link' %>
-              </li>
-            <% end %>
-          </ul>
-        </nav>
-        <h3 class="text-muted">Bin Reverser</h3>
-      </header>
-
-      <% flash.each do |name, msg| %>
-        <%= content_tag(
-          :div, msg,
-          class: 'alert alert-info'
-        ) %>
-      <% end %>
-
+      <%= render 'shared/header' %>
+      <%= render 'shared/flash' %>
       <%= yield %>
     </div>
   </body>
