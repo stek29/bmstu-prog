@@ -1,6 +1,6 @@
 <h1>Change password</h1>
 
-<%= form_for @user, url: users_url, method: :put do |f| %>
+<%= form_for @user, method: :put do |f| %>
   <% if @user.errors.any? %>
     <% @user.errors.full_messages.each do |message| %>
       <div class="alert alert-danger">

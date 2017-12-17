@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_login, except: %i[new create]
-  before_action :set_current_user, only: %i[destroy show edit update]
+  before_action :set_user, only: %i[destroy show edit update]
+  before_action :validate_edit, only: %i[destroy edit update]
 
   def new
     @user = User.new
@@ -17,8 +18,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    session[:user_id] = nil if same_user
     @user.destroy
-    session[:user_id] = nil
     redirect_to root_url, notice: 'User was deleted'
   end
 
@@ -27,7 +28,7 @@ class UsersController < ApplicationController
                       .permit(:password, :password_confirmation, :old_password)
 
     if @user.update_password(permitted)
-      redirect_to users_url, notice: 'Password changed successfully'
+      redirect_to @user, notice: 'Password changed successfully'
     else
       render :edit
     end
@@ -37,13 +38,30 @@ class UsersController < ApplicationController
 
   def edit; end
 
+  def index
+    @users = User.all
+  end
+
   private
 
   def allowed_params
     params.require(:user).permit(:username, :password, :password_confirmation)
   end
 
-  def set_current_user
-    @user = current_user
+  def set_user
+    @current_user = current_user
+    @user = User.find(params[:id])
+  end
+
+  def validate_edit
+    unless same_user
+      redirect_to users_path, notice: "You're not allowed to edit this user"
+    end
+  end
+
+  helper_method :same_user
+
+  def same_user
+    @user == @current_user
   end
 end

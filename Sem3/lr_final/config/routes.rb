@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'sessions/new'
 
-  resource :users
+  resources :users
   resource :sessions, only: %i[new create destroy]
 
   get 'signup', to: 'users#new', as: 'signup'
