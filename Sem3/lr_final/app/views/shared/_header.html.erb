@@ -3,11 +3,6 @@
     <ul class="nav nav-pills float-right">
       <% if logged_in? %>
         <li class="nav-item">
-          <%= link_to('Input',
-                      bin_reverser_input_path,
-                      class: 'nav-link') %>
-        </li>
-        <li class="nav-item">
           <%= link_to @current_user.username, @current_user, class: 'nav-link' %>
         </li>
       <% else %>
@@ -20,5 +15,5 @@
       <% end %>
     </ul>
   </nav>
-  <h3 class="text-muted">Bin Reverser</h3>
+  <%= link_to 'Bin Reverser', root_path, class: 'navbar-brand' %>
 </header>
