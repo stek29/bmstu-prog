@@ -2,13 +2,18 @@
 global _process_words
 
 ; void print_word_pair(char* w1, int w1len, char* w2, int w2len)
-extern _print_words
+extern _print_word_pair
 
 %ifdef DEBUG
 ; void debug_wordscan(char* str, int word_count,
 ;   char** word_starts, int* word_lens)
 extern _debug_wordscan
 %endif
+
+
+section .data
+global _max_diff_count
+_max_diff_count: dd 1
 
 section .bss
 max_strlen equ 256
@@ -119,6 +124,79 @@ _process_words:
   call _debug_wordscan
   add esp, 16
 %endif
+
+  ; iterate over all words "combinations"
+  mov ebp, [word_count]
+.word_combinations.outer_loop:
+  cmp ebp, 1
+  jbe .word_combinations.outer_loop.done
+  dec ebp
+  mov ebx, ebp
+
+.word_combinations.inner_loop:
+  test ebx, ebx
+  je .word_combinations.inner_loop.done
+  dec ebx
+
+  ; check if words have same lengths
+  mov eax, [word_lens + ebp*4]
+  mov ecx, [word_lens + ebx*4]
+
+  cmp eax, ecx
+  jne .word_combinations.inner_loop
+
+  ; if they do, compare two words
+  ; flags are caller-saved => df can be changed
+  cld
+
+  mov esi, [word_starts + ebp*4]
+  mov edi, [word_starts + ebx*4]
+
+  ; Compare words:
+  ; a: if they are same: print them
+  ; b: else:
+  ;  1. decrement edx (used for number of differences encountered)
+  ;  2. if edx is 0, there were more than _max_diff_count differences,
+  ;     and word pair is skipped
+  ;  3. skip current char in both strings and decrement ecx (word len)
+  ;  4. try comparing again
+
+  mov edx, [_max_diff_count]
+.word_combinations.cmps_loop:
+  repe cmpsb
+  ; a
+  jecxz .word_combinations.cmps_loop.done
+
+  ; 1
+  dec edx
+
+  ; 2
+  test edx, edx
+  jne .word_combinations.cmps_loop
+
+  ; 3
+  inc esi
+  inc edi
+  dec ecx
+
+  ; 4
+  jmp .word_combinations.inner_loop
+.word_combinations.cmps_loop.done:
+
+  ; If we reached this point, words should be printed
+  push eax
+  push dword [word_starts + ebp*4]
+  push eax
+  push dword [word_starts + ebx*4]
+  call dword _print_word_pair
+  add esp, 16
+
+  jmp .word_combinations.inner_loop
+
+.word_combinations.inner_loop.done:
+  jmp .word_combinations.outer_loop
+
+.word_combinations.outer_loop.done:
 
   ; pop callee-saved registers:
   ; ebx, ebp, esi, edi

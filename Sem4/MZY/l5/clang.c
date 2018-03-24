@@ -5,7 +5,9 @@
 extern void process_words(char* str);
 
 void print_word_pair(char* w1, int w1len, char* w2, int w2len) {
-  printf("'%p:%d' и '%p:%d'", w1, w1len, w2, w2len);
+#ifdef DEBUG
+  printf("'%p:%d' и '%p:%d'\n", w1, w1len, w2, w2len);
+#endif
   printf("'%.*s' и '%.*s'\n", w1len, w1, w2len, w2);
 }
 
