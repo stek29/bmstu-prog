@@ -158,28 +158,19 @@ _process_words:
   ;  1. decrement edx (used for number of differences encountered)
   ;  2. if edx is 0, there were more than _max_diff_count differences,
   ;     and word pair is skipped
-  ;  3. skip current char in both strings and decrement ecx (word len)
-  ;  4. try comparing again
+  ;  3. try comparing again
 
   mov edx, [_max_diff_count]
 .word_combinations.cmps_loop:
   repe cmpsb
   ; a
   jecxz .word_combinations.cmps_loop.done
-
   ; 1
   dec edx
-
   ; 2
   test edx, edx
   jne .word_combinations.cmps_loop
-
   ; 3
-  inc esi
-  inc edi
-  dec ecx
-
-  ; 4
   jmp .word_combinations.inner_loop
 .word_combinations.cmps_loop.done:
 
