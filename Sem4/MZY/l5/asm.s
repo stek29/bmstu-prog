@@ -26,10 +26,6 @@ string_start: resd 1
 
 section .text
 _process_words:
-  ; get string ptr
-  mov esi, [esp + 4]
-  mov [string_start], esi
-
   ; push callee-saved registers:
   ; ebx, ebp, esi, edi
   ; 4 regs are pushed, so stack alignment is fine
@@ -37,6 +33,10 @@ _process_words:
   push ebp
   push esi
   push edi
+
+  ; get string ptr
+  mov esi, [esp + 16 + 4]
+  mov [string_start], esi
 
   ; - fill word_starts, word_lens, word_count
   ; edi: current word_start
