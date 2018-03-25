@@ -67,7 +67,6 @@ _process_text:
   mov edi, [info_ptr]
 
   xor ebx, ebx
-  xor ecx, ecx
 
 .fmt_loop.start:
   cmp ebx, ('Z' - 'A' + 1)
@@ -79,16 +78,17 @@ _process_text:
   test eax, eax
   je .fmt_loop.start
 
-  mov [edi + ecx*8], eax
+  stosd
   mov eax, ebx
   add eax, ('A' - 1)
-  mov [edi + ecx*8 + 4], eax
-  inc ecx
+  stosd
 
   jmp .fmt_loop.start
 .fmt_loop.done:
 
-  mov eax, ecx
+  mov eax, edi
+  sub eax, [info_ptr]
+  shr eax, 3
 
   ; pop callee-saved registers:
   ; ebx, ebp, esi, edi
