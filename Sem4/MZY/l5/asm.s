@@ -13,7 +13,9 @@ extern _debug_wordscan
 
 section .data
 global _max_diff_count
-_max_diff_count: dd 1
+
+# max allowed unmatching chars + 1
+_max_diff_count: dd 2
 
 section .bss
 max_strlen equ 256
@@ -162,9 +164,13 @@ _process_words:
 
   mov edx, [_max_diff_count]
 .word_combinations.cmps_loop:
+  jecxz .word_combinations.cmps_loop.done
   repe cmpsb
+  jne .word_combinations.cmps_loop.unequal
   ; a
   jecxz .word_combinations.cmps_loop.done
+
+.word_combinations.cmps_loop.unequal
   ; 1
   dec edx
   ; 2
