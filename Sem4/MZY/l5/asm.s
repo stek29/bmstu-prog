@@ -14,15 +14,15 @@ extern _debug_wordscan
 section .data
 global _max_diff_count
 
-# max allowed unmatching chars + 1
+; max allowed unmatching chars + 1
 _max_diff_count: dd 2
 
 section .bss
 max_strlen equ 256
 
 word_count: resd 1
-word_starts: resb max_strlen / 2
-word_lens: resb max_strlen / 2
+word_starts: resd max_strlen / 2
+word_lens: resd max_strlen / 2
 
 string_start: resd 1
 
@@ -166,11 +166,11 @@ _process_words:
 .word_combinations.cmps_loop:
   jecxz .word_combinations.cmps_loop.done
   repe cmpsb
-  jne .word_combinations.cmps_loop.unequal
   ; a
-  jecxz .word_combinations.cmps_loop.done
+  jne .word_combinations.cmps_loop.unequal
+  jmp .word_combinations.cmps_loop
 
-.word_combinations.cmps_loop.unequal
+.word_combinations.cmps_loop.unequal:
   ; 1
   dec edx
   ; 2
